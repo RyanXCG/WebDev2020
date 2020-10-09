@@ -1,0 +1,10 @@
+.App {
+  text-align: left;
+}
+
+#left {
+  float: left;
+}
+#right {
+  float: left;
+}
