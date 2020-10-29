@@ -35,6 +35,7 @@ const userReducer = (state = initState, action) => {
     case "DELETE_USER":
       return {
         ...state,
+        data: state.data.filter((user) => user._id !== action.payload),
         isFetching: false,
         err: null,
       };

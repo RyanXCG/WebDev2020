@@ -5,9 +5,11 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import store from "./store";
+import CssBaseline from "@material-ui/core/CssBaseline";
 
 ReactDOM.render(
   <Provider store={store}>
+    <CssBaseline />
     <App />
   </Provider>,
   document.getElementById("root")

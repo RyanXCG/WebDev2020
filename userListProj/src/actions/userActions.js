@@ -34,10 +34,11 @@ function putSuccess() {
   };
 }
 
-function deleteSuccess() {
+function deleteSuccess(id) {
   console.log("delete sucess");
   return {
     type: "DELETE_USER",
+    payload: id,
   };
 }
 
@@ -72,9 +73,9 @@ export const addUser = (input) => {
       })
       .then((res) => {
         dispatch(postSuccess());
+        input.history.push("/");
       })
       .catch((err) => {
-        console.log("fail");
         dispatch(requestFail(err));
       });
   };
@@ -93,9 +94,9 @@ export const updateUser = (input) => {
       })
       .then((res) => {
         dispatch(putSuccess());
+        input.history.push("/");
       })
       .catch((err) => {
-        console.log("fail");
         dispatch(requestFail(err));
       });
   };
@@ -107,7 +108,7 @@ export const deleteUser = (id) => {
     axios
       .delete(`/api/${id}`)
       .then((res) => {
-        dispatch(deleteSuccess());
+        dispatch(deleteSuccess(id));
       })
       .catch((err) => {
         dispatch(requestFail(err));

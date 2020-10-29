@@ -11,7 +11,12 @@ class CreateUser extends Component {
       sexInput: "",
       ageInput: "",
       passwordInput: "",
+      history: null,
     };
+  }
+
+  componentDidMount() {
+    this.setState({ history: this.props.history });
   }
 
   onFirstNameInputChange = (e) => {
@@ -38,17 +43,6 @@ class CreateUser extends Component {
     e.preventDefault();
     console.log(this.state);
     this.props.addUser(this.state);
-
-    this.setState({
-      input: {
-        firstNameInput: "",
-        lastNameInput: "",
-        sexInput: "",
-        ageInput: "",
-        passwordInput: "",
-      },
-    });
-    this.props.history.push("/");
   };
 
   render() {

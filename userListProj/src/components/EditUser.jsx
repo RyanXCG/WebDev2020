@@ -12,6 +12,7 @@ class EditUser extends Component {
       sexInput: "",
       ageInput: "",
       passwordInput: "",
+      history: null,
     };
   }
 
@@ -23,6 +24,7 @@ class EditUser extends Component {
       lastNameInput: lastName,
       sexInput: sex,
       ageInput: age,
+      history: this.props.history,
     });
   }
 
@@ -50,18 +52,6 @@ class EditUser extends Component {
     e.preventDefault();
     console.log(this.state);
     this.props.updateUser(this.state);
-
-    this.setState({
-      input: {
-        id: "",
-        firstNameInput: "",
-        lastNameInput: "",
-        sexInput: "",
-        ageInput: "",
-        passwordInput: "",
-      },
-    });
-    this.props.history.push("/");
   };
 
   render() {

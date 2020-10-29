@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { getUsers, deleteUser } from "../actions/userActions";
 import { connect } from "react-redux";
+import Button from "@material-ui/core/Button";
 
 const debounce = (cb, time) => {
   let ref;
@@ -68,7 +69,7 @@ class UserList extends Component {
 
   onDeleteClicked(id) {
     this.props.deleteUser(id);
-    window.location.reload(true);
+    //this.props.users.data.filter((user) => user._id !== id);
   }
 
   onEditClicked(user) {
@@ -86,6 +87,7 @@ class UserList extends Component {
       if (err) {
         return <div>There was an error to get the data</div>;
       } else {
+        const totalPage = Math.ceil(data.length / 5);
         return (
           <div className="UserList">
             <h1>Users</h1>
@@ -102,11 +104,13 @@ class UserList extends Component {
                   <th>Edit</th>
                   <th>Delete</th>
                   <th>
-                    <button
+                    <Button
+                      variant="contained"
+                      color="primary"
                       onClick={() => this.onSortButtonClicked("firstName")}
                     >
                       First Name
-                    </button>
+                    </Button>
                   </th>
                   <th>
                     <button
