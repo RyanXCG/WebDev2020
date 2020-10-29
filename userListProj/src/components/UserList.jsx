@@ -69,7 +69,6 @@ class UserList extends Component {
 
   onDeleteClicked(id) {
     this.props.deleteUser(id);
-    //this.props.users.data.filter((user) => user._id !== id);
   }
 
   onEditClicked(user) {
@@ -87,10 +86,11 @@ class UserList extends Component {
       if (err) {
         return <div>There was an error to get the data</div>;
       } else {
-        const totalPage = Math.ceil(data.length / 5);
+        console.log(data.length);
         return (
           <div className="UserList">
             <h1>Users</h1>
+
             <form>
               <label>Search: </label>
               <input
@@ -154,11 +154,16 @@ class UserList extends Component {
                 })}
               </tbody>
             </table>
+            {data.length === 0 && <h3>No More Users</h3>}
             <br></br>
-            <button onClick={() => this.onPreviousClicked()}>previous</button>
+            {this.state.page !== 1 && (
+              <button onClick={() => this.onPreviousClicked()}>previous</button>
+            )}
             <button>{this.state.page}</button>
 
-            <button onClick={() => this.onNextClicked()}>next</button>
+            {data.length == 5 && (
+              <button onClick={() => this.onNextClicked()}>next</button>
+            )}
             <br></br>
             <br></br>
             <button onClick={() => this.props.history.push("/createUser")}>
